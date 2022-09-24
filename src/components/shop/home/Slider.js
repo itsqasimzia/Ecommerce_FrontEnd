@@ -90,6 +90,11 @@ const Slider = (props) => {
               className="w-full min-h-full"
               src={`${apiURL}/uploads/customize/${data.sliderImages[slide].slideImage}`}
               alt="sliderImage"
+              style={{
+                maxHeight: "650px",
+                minHeight: "650px",
+                objectFit: "cover",
+              }}
             />
           ) : (
             ""

@@ -10,7 +10,8 @@ import { getSingleProduct } from "./FetchApi";
 
 const AllReviews = (props) => {
   const { data, dispatch } = useContext(LayoutContext);
-  const { pRatingsReviews } = data.singleProductDetail;
+  console.log("reviewdata", data);
+  const pRatingsReviews = data.singleProductDetail?.reviews;
   let { id } = useParams(); // Prodduct Id
 
   const [fData, setFdata] = useState({
@@ -39,7 +40,6 @@ const AllReviews = (props) => {
       console.log(error);
     }
   };
-  console.log(pRatingsReviews);
   return (
     <Fragment>
       <div className="md:mx-16 lg:mx-20 xl:mx-24 flex flex-col">
@@ -47,8 +47,8 @@ const AllReviews = (props) => {
       </div>
       <div className="mt-6 mb-12 md:mx-16 lg:mx-20 xl:mx-24">
         {/* List start */}
-        {pRatingsReviews.length > 0 ? (
-          pRatingsReviews.map((item, index) => {
+        {pRatingsReviews?.length > 0 ? (
+          pRatingsReviews?.map((item, index) => {
             return (
               <Fragment key={index}>
                 <div className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-start">
@@ -100,9 +100,9 @@ const AllReviews = (props) => {
                           );
                         })}
                       </div>
-                      {item.user &&
+                      {item.userId &&
                       isAuthenticate() &&
-                      item.user._id === isAuthenticate().user._id ? (
+                      !item?.user?._id === isAuthenticate()?.user?._id ? (
                         <div className="flex justify-center my-2">
                           <span
                             onClick={(e) =>

@@ -3,13 +3,12 @@ import { loginReq } from "./fetchApi";
 import { LayoutContext } from "../index";
 
 const Login = (props) => {
-  const { data: layoutData, dispatch: layoutDispatch } = useContext(
-    LayoutContext
-  );
+  const { data: layoutData, dispatch: layoutDispatch } =
+    useContext(LayoutContext);
 
   const [data, setData] = useState({
-    email: "",
-    password: "",
+    email: "qasim@gmail.com",
+    password: "11223344",
     error: false,
     loading: true,
   });
@@ -23,6 +22,7 @@ const Login = (props) => {
         email: data.email,
         password: data.password,
       });
+      console.log(responseData);
       if (responseData.error) {
         setData({
           ...data,

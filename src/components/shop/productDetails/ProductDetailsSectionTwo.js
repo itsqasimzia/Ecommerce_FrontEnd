@@ -31,9 +31,9 @@ const Menu = () => {
           } px-4 py-3 relative flex cursor-pointer`}
         >
           <span>Reviews</span>
-          <span className="absolute text-xs top-0 right-0 mt-2 bg-yellow-700 text-white rounded px-1">
+          {/* <span className="absolute text-xs top-0 right-0 mt-2 bg-yellow-700 text-white rounded px-1">
             {layoutData.singleProductDetail.pRatingsReviews.length}
-          </span>
+          </span> */}
         </div>
       </div>
     </Fragment>
@@ -83,7 +83,7 @@ const ProductDetailsSectionTwo = (props) => {
           <span>Category :</span>
           <span className="text-sm text-gray-600">
             {" "}
-            {singleProduct.pCategory ? singleProduct.pCategory.cName : ""}
+            {singleProduct?.category ? singleProduct?.category?.cName : ""}
           </span>
         </div>
       </div>

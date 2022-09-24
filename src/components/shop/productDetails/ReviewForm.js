@@ -9,6 +9,8 @@ const ReviewForm = (props) => {
   const { data, dispatch } = useContext(LayoutContext);
   let { id } = useParams(); // Product Id
 
+  console.log("review", data);
+
   const [fData, setFdata] = useState({
     rating: "",
     review: "",
@@ -41,11 +43,11 @@ const ReviewForm = (props) => {
     }
   };
 
-  const ratingUserList = data.singleProductDetail.pRatingsReviews.map(
-    (item) => {
-      return item.user ? item.user._id : "";
-    }
-  );
+  // const ratingUserList = data?.singleProductDetail?.pRatingsReviews?.map(
+  //   (item) => {
+  //     return item?.user ? item?.user?._id : "";
+  //   }
+  // );
 
   return (
     <Fragment>
@@ -53,7 +55,8 @@ const ReviewForm = (props) => {
         {fData.error ? Alert("red", fData.error) : ""}
         {fData.success ? Alert("green", fData.success) : ""}
       </div>
-      {ratingUserList.includes(isAuthenticate().user._id) ? (
+      {/* {!ratingUserList?.includes(isAuthenticate()?.user?._id) ? ( */}
+      {fData?.error ? (
         <div className="mb-12 md:mx-16 lg:mx-20 xl:mx-24"></div>
       ) : (
         <div className="mb-12 md:mx-16 lg:mx-20 xl:mx-24 flex flex-col">

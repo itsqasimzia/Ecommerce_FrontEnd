@@ -28,6 +28,8 @@ const ProductDetailsSection = (props) => {
   const [quantitiy, setQuantitiy] = useState(1); // Increse and decrese quantity state
   const [, setAlertq] = useState(false); // Alert when quantity greater than stock
 
+  console.log("sProduct", sProduct);
+
   const [wList, setWlist] = useState(
     JSON.parse(localStorage.getItem("wishList"))
   ); // Wishlist State Control
@@ -98,9 +100,9 @@ const ProductDetailsSection = (props) => {
     <Fragment>
       <Submenu
         value={{
-          categoryId: sProduct.pCategory._id,
+          categoryId: sProduct.category.id,
           product: sProduct.pName,
-          category: sProduct.pCategory.cName,
+          category: sProduct.category.cName,
         }}
       />
       <section className="m-4 md:mx-12 md:my-6">
