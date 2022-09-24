@@ -1,0 +1,17 @@
+.card {
+  height: 200px;
+  width: 200px;
+  background: #f2f2f2;
+  overflow: hidden;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  cursor: pointer;
+}
+.card > span {
+  font-size: 1.5rem;
+}

@@ -6,7 +6,7 @@ const apiURL = process.env.REACT_APP_API_URL;
 
 const EditProductModal = (props) => {
   const { data, dispatch } = useContext(ProductContext);
-
+  console.log(data);
   const [categories, setCategories] = useState(null);
 
   const alert = (msg, type) => (
@@ -24,6 +24,10 @@ const EditProductModal = (props) => {
     pQuantity: "",
     pPrice: "",
     pOffer: "",
+    category: {
+      id: "",
+      cName: "",
+    },
     error: false,
     success: false,
   });
@@ -46,7 +50,7 @@ const EditProductModal = (props) => {
       pDescription: data.editProductModal.pDescription,
       pImages: data.editProductModal.pImages,
       pStatus: data.editProductModal.pStatus,
-      pCategory: data.editProductModal.pCategory,
+      pCategory: data.editProductModal?.category?.cName,
       pQuantity: data.editProductModal.pQuantity,
       pPrice: data.editProductModal.pPrice,
       pOffer: data.editProductModal.pOffer,
@@ -65,12 +69,19 @@ const EditProductModal = (props) => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    if (!editformData.pEditImages) {
+    if (!data?.editProductModal?.pImages?.length) {
+      setEditformdata({
+        ...editformData,
+        error: "Select Images ",
+        success: false,
+      });
+
       console.log("Image Not upload=============", editformData);
     } else {
       console.log("Image uploading");
     }
     try {
+      console.log("edit form data", editformData);
       let responseData = await editProduct(editformData);
       if (responseData.success) {
         fetchData();
@@ -283,13 +294,13 @@ const EditProductModal = (props) => {
                   {categories && categories.length > 0
                     ? categories.map((elem) => {
                         return (
-                          <Fragment key={elem._id}>
-                            {editformData.pCategory._id &&
-                            editformData.pCategory._id === elem._id ? (
+                          <Fragment key={elem.id}>
+                            {editformData.category?.id &&
+                            editformData.category?.id === elem.id ? (
                               <option
                                 name="status"
-                                value={elem._id}
-                                key={elem._id}
+                                value={elem.id}
+                                key={elem.id}
                                 selected
                               >
                                 {elem.cName}
@@ -297,8 +308,8 @@ const EditProductModal = (props) => {
                             ) : (
                               <option
                                 name="status"
-                                value={elem._id}
-                                key={elem._id}
+                                value={elem.id}
+                                key={elem.id}
                               >
                                 {elem.cName}
                               </option>

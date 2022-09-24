@@ -2,6 +2,8 @@ import React, { Fragment, useState, useContext } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
 import { LayoutContext } from "../index";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 
 const LoginSignup = (props) => {
   const { data, dispatch } = useContext(LayoutContext);

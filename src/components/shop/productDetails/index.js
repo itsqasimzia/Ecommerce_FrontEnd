@@ -21,6 +21,8 @@ const ProductDetails = (props) => {
     productDetailsReducer,
     productDetailsState
   );
+
+  console.log("product detail", data);
   return (
     <Fragment>
       <ProductDetailsContext.Provider value={{ data, dispatch }}>

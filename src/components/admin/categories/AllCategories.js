@@ -163,7 +163,7 @@ const CategoryTable = ({ category, deleteCat, editCat }) => {
           <span
             onClick={(e) =>
               editCat(
-                category._id,
+                category.id,
                 true,
                 category.cDescription,
                 category.cStatus
@@ -186,7 +186,7 @@ const CategoryTable = ({ category, deleteCat, editCat }) => {
             </svg>
           </span>
           <span
-            onClick={(e) => deleteCat(category._id)}
+            onClick={(e) => deleteCat(category.id)}
             className="cursor-pointer hover:bg-gray-200 rounded-lg p-2 mx-1"
           >
             <svg

@@ -1,15 +1,17 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useReducer, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import "./style.css";
 
 import { logout } from "./Action";
-import { LayoutContext } from "../index";
 import { isAdmin } from "../auth/fetchApi";
-
-const Navber = (props) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCar, faLock } from "@fortawesome/free-solid-svg-icons";
+import { HomeContext } from "../home";
+import { LayoutContext } from "..";
+import { homeReducer, homeState } from "../home/HomeContext";
+const NavbarComponent = (props) => {
   const history = useHistory();
   const location = useLocation();
-
   const { data, dispatch } = useContext(LayoutContext);
 
   const navberToggleOpen = () =>
@@ -27,32 +29,86 @@ const Navber = (props) => {
       ? dispatch({ type: "cartModalToggle", payload: false })
       : dispatch({ type: "cartModalToggle", payload: true });
 
+  const NavItems = ({ title }) => {
+    return (
+      <span
+        className="hover:bg-gray-200 px-4 py-3 rounded-lg font-light tracking-widest hover:text-gray-800 cursor-pointer"
+        onClick={(e) => history.push("/")}
+        style={{ whiteSpace: "nowrap" }}
+      >
+        {title}
+      </span>
+    );
+  };
+  const NavItemsWithIcon = ({ preTitle, postTitle, middle, icon }) => {
+    return (
+      <span
+        className="py-1 rounded-lg font-light flex tracking-widest hover:text-gray-800 cursor-pointer ml-4"
+        onClick={(e) => history.push("/")}
+      >
+        <div>
+          <FontAwesomeIcon icon={icon} className="color-primary-text mr-1" />
+        </div>
+        <div className="ml-1 color-primary-text">
+          <span className="hover:text-orange-500">{preTitle} </span>
+          <span>{middle && middle} </span>
+          <span className="hover:text-orange-500">
+            {postTitle && postTitle}
+          </span>
+        </div>
+      </span>
+    );
+  };
+
   return (
     <Fragment>
-      {/* Navber Section */}
-      <nav className="fixed top-0 w-full z-20 shadow-lg lg:shadow-none bg-white">
-        <div className="m-4 md:mx-12 md:my-6 grid grid-cols-4 lg:grid-cols-3">
-          <div className="hidden lg:block col-span-1 flex text-gray-600 mt-1">
-            <span
-              className="hover:bg-gray-200 px-4 py-3 rounded-lg font-light tracking-widest hover:text-gray-800 cursor-pointer"
-              onClick={(e) => history.push("/")}
-            >
-              Shop
-            </span>
-            <span
-              className="hover:bg-gray-200 px-4 py-3 rounded-lg font-light tracking-widest hover:text-gray-800 cursor-pointer"
-              onClick={(e) => history.push("/blog")}
-            >
-              Blog
-            </span>
-            <span
-              className="hover:bg-gray-200 px-4 py-3 rounded-lg font-light tracking-widest hover:text-gray-800 cursor-pointer"
-              onClick={(e) => history.push("/contact-us")}
-            >
-              Contact us
-            </span>
+      {/* Navber Section start */}
+
+      <nav className="w-full z-20 shadow-lg lg:shadow-none bg-white">
+        <div className="m-4 md:mx-8 flex justify-between items-center ">
+          <div className="hidden col-span-1 mt-2 lg:block lg text-gray-600">
+            <div>
+              <span className="rounded-full bg-green-500"></span>
+              <span className="rounded-full w-20 text-green-500 font-bold p-0 m-0 text-2xl">
+                Mart
+              </span>
+              <span className="block p-0 m-0">Pick & Cary</span>
+            </div>
           </div>
-          <div className="col-span-2 lg:hidden flex justify-items-stretch	 items-center">
+
+          <div
+            onClick={(e) => history.push("/")}
+            style={{ letterSpacing: "0.70rem" }}
+            className="hidden lg:block  text-center text-gray-800 font-bold tracking-widest uppercase text-2xl cursor-pointer"
+          ></div>
+
+          <div className="flex items-right self-end lg:col-span-1 flex justify-end">
+            <NavItemsWithIcon
+              preTitle={"Login"}
+              middle={"or"}
+              postTitle={"Signup"}
+              icon={faLock}
+            />
+            <NavItemsWithIcon
+              preTitle={"Track Order"}
+              middle={""}
+              postTitle={""}
+              icon={faCar}
+            />
+          </div>
+        </div>
+      </nav>
+      {/* Navber Section end */}
+
+      {/* Navber Section 2 */}
+      <nav className="w-full z-20 shadow-lg lg:shadow-none bg-white">
+        <div className="md:mx-4 grid grid-cols-4 lg:grid-cols-4">
+          <div className="hidden col-span-1 mt-2 lg:block lg text-gray-600">
+            <NavItems title={`Home`} />
+            <NavItems title={`Blog`} />
+            <NavItems title={`Contact Us`} />
+          </div>
+          <div className="col-span-2 lg:hidden flex justify-items-stretch	items-center">
             <svg
               onClick={(e) => navberToggleOpen()}
               className="col-span-1 lg:hidden w-8 h-8 cursor-pointer text-gray-600"
@@ -79,10 +135,9 @@ const Navber = (props) => {
           <div
             onClick={(e) => history.push("/")}
             style={{ letterSpacing: "0.70rem" }}
-            className="hidden lg:block flex items-left col-span-1 text-center text-gray-800 font-bold tracking-widest uppercase text-2xl cursor-pointer"
-          >
-            Hayroo
-          </div>
+            className="hidden lg:block col-span-2 text-center text-gray-800 font-bold tracking-widest uppercase text-2xl cursor-pointer"
+          ></div>
+
           <div className="flex items-right col-span-2 lg:col-span-1 flex justify-end">
             {/*  WishList Page Button */}
             <div
@@ -114,6 +169,7 @@ const Navber = (props) => {
                 <div
                   className="userDropdownBtn hover:bg-gray-200 px-2 py-2 rounded-lg relative"
                   title="Logout"
+                  style={{ zIndex: 100 }}
                 >
                   <svg
                     className="cursor-pointer w-8 h-8 text-gray-600 hover:text-gray-800"
@@ -354,11 +410,12 @@ const Navber = (props) => {
                 />
               </svg>
               <span className="absolute top-0 ml-6 mt-1 bg-yellow-700 rounded px-1 text-white text-xs hover:text-gray-200 font-semibold">
-                {data.cartProduct !== null ? data.cartProduct.length : 0}
+                {data?.cartProduct !== null ? data?.cartProduct?.length : 0}
               </span>
             </div>
           </div>
         </div>
+
         <div
           className={
             data.navberHamburger && data.navberHamburger
@@ -389,6 +446,17 @@ const Navber = (props) => {
         </div>
       </nav>
       {/* End Navber Section */}
+    </Fragment>
+  );
+};
+
+const Navber = () => {
+  const [data, dispatch] = useReducer(homeReducer, homeState);
+  return (
+    <Fragment>
+      <HomeContext.Provider value={{ data, dispatch }}>
+        <NavbarComponent />
+      </HomeContext.Provider>
     </Fragment>
   );
 };

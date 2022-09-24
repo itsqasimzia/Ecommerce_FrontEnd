@@ -1,7 +1,12 @@
 export const productState = {
   products: null,
   addProductModal: false,
+
   editProductModal: {
+    category: {
+      id: "",
+      cName: "",
+    },
     modal: false,
     pId: "",
     pName: "",
@@ -35,6 +40,10 @@ export const productReducer = (state, action) => {
         ...state,
         editProductModal: {
           modal: true,
+          category: {
+            id: action.product.category.id,
+            cName: action.product.category.cName,
+          },
           pId: action.product.pId,
           pName: action.product.pName,
           pDescription: action.product.pDescription,

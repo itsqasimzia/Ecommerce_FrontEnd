@@ -1,13 +1,14 @@
 import React, { Fragment, useContext } from "react";
 import ProductCategoryDropdown from "./ProductCategoryDropdown";
 import { HomeContext } from "./index";
+import { motion } from "framer-motion/dist/framer-motion";
 
 const ProductCategory = (props) => {
   const { data, dispatch } = useContext(HomeContext);
 
   return (
     <Fragment>
-      <div className="flex justify-between font-medium">
+      <div className="flex justify-between font-medium ">
         <div
           onClick={(e) =>
             dispatch({
@@ -15,7 +16,7 @@ const ProductCategory = (props) => {
               payload: !data.categoryListDropdown,
             })
           }
-          className={`flex items-center space-x-1 cursor-pointer ${
+          className={`flex items-center  space-x-1 cursor-pointer ${
             data.categoryListDropdown ? "text-yellow-700" : ""
           }`}
         >
@@ -68,13 +69,13 @@ const ProductCategory = (props) => {
             </span>
           </div>
           <span>/</span>
-          <div
-            onClick={(e) =>
+          <motion.div
+            onClick={(e) => {
               dispatch({
                 type: "searchDropdown",
                 payload: !data.searchDropdown,
-              })
-            }
+              });
+            }}
             className={`flex items-center space-x-1 cursor-pointer ${
               data.searchDropdown ? "text-yellow-700" : ""
             }`}
@@ -96,7 +97,7 @@ const ProductCategory = (props) => {
                 ></path>
               </svg>
             </span>
-          </div>
+          </motion.div>
         </div>
       </div>
       <ProductCategoryDropdown />

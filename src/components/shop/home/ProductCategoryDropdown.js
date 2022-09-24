@@ -4,7 +4,7 @@ import { HomeContext } from "./index";
 import { getAllCategory } from "../../admin/categories/FetchApi";
 import { getAllProduct, productByPrice } from "../../admin/products/FetchApi";
 import "./style.css";
-
+import { motion } from "framer-motion/dist/framer-motion";
 const apiURL = process.env.REACT_APP_API_URL;
 
 const CategoryList = () => {
@@ -146,6 +146,7 @@ const FilterList = () => {
 
 const Search = () => {
   const { data, dispatch } = useContext(HomeContext);
+
   const [search, setSearch] = useState("");
   const [productArray, setPa] = useState(null);
 
@@ -182,10 +183,12 @@ const Search = () => {
   };
 
   return (
-    <div
+    <motion.div
+      animate={{ opacity: data.searchDropdown ? 1 : 0 }}
+      transition={{ duration: 0.5 }}
       className={`${
         data.searchDropdown ? "" : "hidden"
-      } my-4 flex items-center justify-between`}
+      } my-4 flex items-center justify-between border-2`}
     >
       <input
         value={search}
@@ -210,7 +213,7 @@ const Search = () => {
           />
         </svg>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

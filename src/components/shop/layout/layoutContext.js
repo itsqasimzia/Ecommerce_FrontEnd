@@ -1,6 +1,7 @@
 export const layoutState = {
   navberHamburger: false,
   loginSignupModal: false,
+  isUserOrAdmin: "user",
   loginSignupError: false,
   cartModal: false,
   cartProduct: null,
@@ -17,6 +18,11 @@ export const layoutReducer = (state, action) => {
       return {
         ...state,
         navberHamburger: action.payload,
+      };
+    case "isUserOrAdmin":
+      return {
+        ...state,
+        isUserOrAdmin: action.payload,
       };
     case "loginSignupModalToggle":
       return {

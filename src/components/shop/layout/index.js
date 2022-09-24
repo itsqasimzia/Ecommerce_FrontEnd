@@ -9,6 +9,7 @@ const Layout = ({ children }) => {
     <Fragment>
       <div className="flex-grow">
         <Navber />
+
         <LoginSignup />
         <CartModal />
         {/* All Children pass from here */}
