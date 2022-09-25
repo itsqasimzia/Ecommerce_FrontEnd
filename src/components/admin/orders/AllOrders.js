@@ -10,6 +10,8 @@ const AllCategory = (props) => {
   const { data, dispatch } = useContext(OrderContext);
   const { orders, loading } = data;
 
+  console.log(data);
+
   useEffect(() => {
     fetchData(dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,44 +97,49 @@ const CategoryTable = ({ order, editOrder }) => {
     <Fragment>
       <tr className="border-b">
         <td className="w-48 hover:bg-gray-200 p-2 flex flex-col space-y-1">
-          {order?.allProduct.map((product, i) => {
+          {order?.allProduct?.map((product, i) => {
             return (
               <span className="block flex items-center space-x-2" key={i}>
                 <img
                   className="w-8 h-8 object-cover object-center"
-                  src={`${apiURL}/uploads/products/${product?.id?.pImages[0]}`}
+                  src={`${apiURL}/uploads/products/${product?.images[0]}`}
                   alt="productImage"
                 />
-                <span>{product?.id?.pName}</span>
+                <span>{product?.pName}</span>
                 <span>{product?.quantitiy}x</span>
               </span>
             );
           })}
         </td>
         <td className="hover:bg-gray-200 p-2 text-center cursor-default">
+          {!order?.status && (
+            <span className="block text-red-600 rounded-full text-center text-xs px-2 font-semibold">
+              {order?.status ? order?.status : "pending"}
+            </span>
+          )}
           {order?.status === "Not processed" && (
             <span className="block text-red-600 rounded-full text-center text-xs px-2 font-semibold">
-              {order?.status}
+              {order?.status ? order?.status : "pending"}
             </span>
           )}
           {order?.status === "Processing" && (
             <span className="block text-yellow-600 rounded-full text-center text-xs px-2 font-semibold">
-              {order?.status}
+              {order?.status ? order?.status : "pending"}
             </span>
           )}
           {order?.status === "Shipped" && (
             <span className="block text-blue-600 rounded-full text-center text-xs px-2 font-semibold">
-              {order?.status}
+              {order?.status ? order?.status : "pending"}
             </span>
           )}
           {order?.status === "Delivered" && (
             <span className="block text-green-600 rounded-full text-center text-xs px-2 font-semibold">
-              {order?.status}
+              {order?.status ? order?.status : "pending"}
             </span>
           )}
           {order?.status === "Cancelled" && (
             <span className="block text-red-600 rounded-full text-center text-xs px-2 font-semibold">
-              {order?.status}
+              {order?.status ? order?.status : "pending"}
             </span>
           )}
         </td>
@@ -158,7 +165,7 @@ const CategoryTable = ({ order, editOrder }) => {
         </td>
         <td className="p-2 flex items-center justify-center">
           <span
-            onClick={(e) => editOrder(order?._id, true, order?.status)}
+            onClick={(e) => editOrder(order?.id, true, order?.status)}
             className="cursor-pointer hover:bg-gray-200 rounded-lg p-2 mx-1"
           >
             <svg
@@ -176,7 +183,7 @@ const CategoryTable = ({ order, editOrder }) => {
             </svg>
           </span>
           <span
-            onClick={(e) => deleteOrderReq(order?._id, dispatch)}
+            onClick={(e) => deleteOrderReq(order?.id, dispatch)}
             className="cursor-pointer hover:bg-gray-200 rounded-lg p-2 mx-1"
           >
             <svg

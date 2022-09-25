@@ -29,7 +29,6 @@ const EditCategoryModal = (props) => {
 
   const submitForm = async () => {
     dispatch({ type: "loading", payload: true });
-    console.log("cid", cId);
     let edit = await editCategory(cId, des, status);
     if (edit.error) {
       console.log(edit.error);

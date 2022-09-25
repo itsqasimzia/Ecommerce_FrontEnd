@@ -11,7 +11,7 @@ export const getAllOrder = async () => {
 };
 
 export const editCategory = async (oId, status) => {
-  let data = { oId: oId, status: status };
+  let data = { oId: oId, pStatus: status };
   console.log(data);
   try {
     let res = await axios.post(`${apiURL}/api/order/update-order`, data);

@@ -54,7 +54,7 @@ const Product = () => {
               >
                 <div className="md:w-1/2 md:flex md:items-center">
                   <img
-                    onClick={(e) => history.push(`/products/${product._id}`)}
+                    onClick={(e) => history.push(`/products/${product.id}`)}
                     className="cursor-pointer md:h-20 md:w-20 object-cover object-center"
                     src={`${apiURL}/uploads/products/${product.pImages[0]}`}
                     alt="wishListproduct"
@@ -75,7 +75,7 @@ const Product = () => {
 
                   <div
                     style={{ background: "#303031" }}
-                    onClick={(e) => history.push(`/products/${product._id}`)}
+                    onClick={(e) => history.push(`/products/${product.id}`)}
                     className="inline-block px-4 py-2 text-white text-xs md:text-base text-center cursor-pointer hover:opacity-75"
                   >
                     View
@@ -83,7 +83,7 @@ const Product = () => {
                 </div>
                 <div className="absolute top-0 right-0 mx-2 my-2 md:relative">
                   <svg
-                    onClick={(e) => removeFromWishList(product._id)}
+                    onClick={(e) => removeFromWishList(product.id)}
                     className="w-6 h-6 cursor-pointer"
                     fill="currentColor"
                     viewBox="0 0 20 20"

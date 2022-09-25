@@ -12,7 +12,7 @@ const HomeComponent = () => {
     <Fragment>
       <Slider />
       <div className="flex justify-between space-x-4 mx-8">
-        <div className="my-8  " style={{ width: "370px" }}></div>
+        {/* <div className="my-8  " style={{ width: "370px" }}></div> */}
         <div className="w-full my-12">
           {/* Category, Search & Filter Section */}
           <section>

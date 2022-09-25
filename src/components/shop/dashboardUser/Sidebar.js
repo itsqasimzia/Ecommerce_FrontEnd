@@ -6,6 +6,7 @@ import { DashboardUserContext } from "./Layout";
 const Sidebar = (props) => {
   const { data } = useContext(DashboardUserContext);
 
+  console.log(data);
   const history = useHistory();
   const location = useLocation();
 

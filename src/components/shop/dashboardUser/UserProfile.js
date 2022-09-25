@@ -6,7 +6,7 @@ import { updatePersonalInformationAction } from "./Action";
 const ProfileComponent = () => {
   const { data, dispatch } = useContext(DashboardUserContext);
   const userDetails = data.userDetails !== null ? data.userDetails : "";
-
+  console.log("user", data);
   const [fData, setFdata] = useState({
     id: "",
     name: "",
@@ -18,13 +18,11 @@ const ProfileComponent = () => {
   useEffect(() => {
     setFdata({
       ...fData,
-      id: userDetails._id,
+      id: userDetails.id,
       name: userDetails.name,
       email: userDetails.email,
       phone: userDetails.phoneNumber,
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userDetails]);
 
   const handleSubmit = () => {

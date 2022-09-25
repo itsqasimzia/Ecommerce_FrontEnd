@@ -9,8 +9,6 @@ const ReviewForm = (props) => {
   const { data, dispatch } = useContext(LayoutContext);
   let { id } = useParams(); // Product Id
 
-  console.log("review", data);
-
   const [fData, setFdata] = useState({
     rating: "",
     review: "",

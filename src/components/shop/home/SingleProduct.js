@@ -72,15 +72,16 @@ const SingleProduct = (props) => {
         className="w-full"
         style={{
           display: "grid",
-          gap: "1.6rem",
+          gap: "2.6rem",
           padding: "1rem auto",
+          margin: "1rem auto",
           gridTemplateColumns: "1fr 1fr 1fr 1fr",
         }}
       >
         {products && products.length > 0 ? (
           products.map((item, index) => {
             return (
-              <Fragment key={index}>
+              <div key={index} style={{ height: "500px" }}>
                 {/* card */}
 
                 <div className="container relative page-wrapper cursor-pointer">
@@ -119,9 +120,9 @@ const SingleProduct = (props) => {
                                     />
                                   </svg>
                                 </span>
-                                {/* <span className="flex justify-center text-gray-700">
-                                  {item.pRatingsReviews.length}
-                                </span> */}
+                                <span className="flex justify-center text-gray-700">
+                                  {item?.review?.length}
+                                </span>
                               </div>
                               {/* <span className="size"></span> */}
                             </div>
@@ -188,7 +189,7 @@ const SingleProduct = (props) => {
                 </div>
 
                 {/* end */}
-              </Fragment>
+              </div>
             );
           })
         ) : (

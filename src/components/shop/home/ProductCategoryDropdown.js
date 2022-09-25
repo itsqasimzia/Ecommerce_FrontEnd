@@ -60,13 +60,18 @@ const FilterList = () => {
   const { data, dispatch } = useContext(HomeContext);
   const [range, setRange] = useState(0);
 
-  const rangeHandle = (e) => {
-    setRange(e.target.value);
-    fetchData(e.target.value);
-  };
+  // const rangeHandle = (e) => {
+  //   setRange(e.target.value);
+  //   fetchData(e.target.value);
+  // };
 
-  const fetchData = async (price) => {
-    if (price === "all") {
+  useEffect(() => {
+    fetchData();
+  }, [range]);
+
+  const fetchData = async () => {
+    console.log(range);
+    if (range === "all") {
       try {
         let responseData = await getAllProduct();
         if (responseData && responseData.Products) {
@@ -79,7 +84,7 @@ const FilterList = () => {
       dispatch({ type: "loading", payload: true });
       try {
         setTimeout(async () => {
-          let responseData = await productByPrice(price);
+          let responseData = await productByPrice(range);
           if (responseData && responseData.Products) {
             console.log(responseData.Products);
             dispatch({ type: "setProducts", payload: responseData.Products });
@@ -117,7 +122,7 @@ const FilterList = () => {
               min="0"
               max="1000"
               step="10"
-              onChange={(e) => rangeHandle(e)}
+              onChange={(e) => setRange(e.target.value)}
             />
           </div>
           <div onClick={(e) => closeFilterBar()} className="cursor-pointer">

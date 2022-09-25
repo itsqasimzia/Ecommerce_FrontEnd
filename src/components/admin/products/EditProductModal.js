@@ -6,7 +6,6 @@ const apiURL = process.env.REACT_APP_API_URL;
 
 const EditProductModal = (props) => {
   const { data, dispatch } = useContext(ProductContext);
-  console.log(data);
   const [categories, setCategories] = useState(null);
 
   const alert = (msg, type) => (

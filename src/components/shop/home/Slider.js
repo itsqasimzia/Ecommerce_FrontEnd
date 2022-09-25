@@ -63,7 +63,7 @@ const Slider = (props) => {
   return (
     <Fragment>
       <div className="flex justify-between mt-4 space-x-4 mx-8">
-        <div className="text-black border" style={{ width: "350px" }}>
+        {/* <div className="text-black border" style={{ width: "350px" }}>
           <div class="area"></div>
           <nav class="main-menu w-full" style={{ width: "100%" }}>
             <ul>
@@ -82,7 +82,7 @@ const Slider = (props) => {
                 })}
             </ul>
           </nav>
-        </div>
+        </div> */}
         {/* <div className="w-20 bg-white"></div> */}
         <div className="relative w-full ">
           {data.sliderImages.length > 0 ? (
@@ -106,7 +106,7 @@ const Slider = (props) => {
                   onClick={(e) =>
                     prevSlide(data.sliderImages.length, slide, setSlide)
                   }
-                  className={`z-10 absolute h-full top-0 left-0 bottom-0 flex justify-end items-center box-border flex justify-center w-16 h-16 rounded text-orange-600 cursor-pointer hover:text-white`}
+                  className={` absolute h-full top-0 left-0 bottom-0 flex justify-end items-center box-border flex justify-center w-16 h-16 rounded text-orange-600 cursor-pointer hover:text-white`}
                   style={{
                     transition: "ease-in-out",
                     animationDuration: ".5s",
@@ -122,7 +122,7 @@ const Slider = (props) => {
                   onClick={(e) =>
                     nextSlide(data.sliderImages.length, slide, setSlide)
                   }
-                  className={`z-10 absolute top-0 right-0 bottom-0 flex justify-end h-full items-center box-border flex justify-center w-16 h-16 text-orange-600 cursor-pointer hover:text-white`}
+                  className={` absolute top-0 right-0 bottom-0 flex justify-end h-full items-center box-border flex justify-center w-16 h-16 text-orange-600 cursor-pointer hover:text-white`}
                 >
                   <FontAwesomeIcon
                     icon={faCircleArrowRight}

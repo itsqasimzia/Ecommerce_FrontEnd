@@ -113,7 +113,7 @@ const CartModal = () => {
                               </div>
                               <div className="flex items-end">
                                 <span className="text-sm text-gray-200">
-                                  {quantity(item._id)}
+                                  {quantity(item.id)}
                                 </span>
                               </div>
                             </div>
@@ -122,13 +122,13 @@ const CartModal = () => {
                               <span className="text-sm text-gray-400">
                                 Subtotoal :
                               </span>{" "}
-                              ${subTotal(item._id, item.pPrice)}.00
+                              ${subTotal(item.id, item.pPrice)}.00
                             </div>{" "}
                             {/* SUbtotal Count */}
                           </div>
                           {/* Cart Product Remove Button */}
                           <div
-                            onClick={(e) => removeCartProduct(item._id)}
+                            onClick={(e) => removeCartProduct(item.id)}
                             className="absolute top-0 right-0 text-white"
                           >
                             <svg

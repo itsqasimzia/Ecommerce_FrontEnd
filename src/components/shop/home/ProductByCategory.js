@@ -47,25 +47,25 @@ const Submenu = ({ category }) => {
 const AllProduct = ({ products }) => {
   const history = useHistory();
   const category =
-    products && products.length > 0 ? products[0].pCategory.cName : "";
+    products && products?.length > 0 ? products[0]?.category?.cName : "";
   return (
     <Fragment>
       <Submenu category={category} />
       <section className="m-4 md:mx-8 md:my-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {products && products.length > 0 ? (
+        {products && products?.length > 0 ? (
           products.map((item, index) => {
             return (
               <Fragment key={index}>
                 <div className="relative col-span-1 m-2">
                   <img
-                    onClick={(e) => history.push(`/products/${item._id}`)}
+                    onClick={(e) => history.push(`/products/${item?.id}`)}
                     className="w-full object-cover object-center cursor-pointer"
-                    src={`${apiURL}/uploads/products/${item.pImages[0]}`}
+                    src={`${apiURL}/uploads/products/${item?.pImages[0]}`}
                     alt=""
                   />
                   <div className="flex items-center justify-between mt-2">
                     <div className="text-gray-600 font-light truncate">
-                      {item.pName}
+                      {item?.pName}
                     </div>
                     <div className="flex items-center space-x-1">
                       <span>
@@ -85,11 +85,11 @@ const AllProduct = ({ products }) => {
                         </svg>
                       </span>
                       <span className="text-gray-700">
-                        {item.pRatings ? item.pRatings.length : 0}
+                        {item?.pRatings ? item?.pRatings?.length : 0}
                       </span>
                     </div>
                   </div>
-                  <div>{item.pPrice}.00$</div>
+                  <div>{item?.pPrice}.00$</div>
                   <div className="absolute top-0 right-0 mx-2 my-2 md:mx-4">
                     <svg
                       className="w-5 h-5 md:w-6 md:h-6 cursor-pointer text-yellow-700"

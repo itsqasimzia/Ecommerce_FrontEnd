@@ -129,7 +129,7 @@ const NavbarComponent = (props) => {
               style={{ letterSpacing: "0.10rem" }}
               className="flex items-left text-center font-bold uppercase text-gray-800 text-2xl cursor-pointer px-2 text-center"
             >
-              Hayroo
+              Pick & Cary Mart
             </span>
           </div>
           <div
@@ -138,7 +138,7 @@ const NavbarComponent = (props) => {
             className="hidden lg:block col-span-2 text-center text-gray-800 font-bold tracking-widest uppercase text-2xl cursor-pointer"
           ></div>
 
-          <div className="flex items-right col-span-2 lg:col-span-1 flex justify-end">
+          <div className="flex z-20  items-right col-span-2 lg:col-span-1 flex justify-end">
             {/*  WishList Page Button */}
             <div
               onClick={(e) => history.push("/wish-list")}
@@ -169,7 +169,6 @@ const NavbarComponent = (props) => {
                 <div
                   className="userDropdownBtn hover:bg-gray-200 px-2 py-2 rounded-lg relative"
                   title="Logout"
-                  style={{ zIndex: 100 }}
                 >
                   <svg
                     className="cursor-pointer w-8 h-8 text-gray-600 hover:text-gray-800"
@@ -309,10 +308,10 @@ const NavbarComponent = (props) => {
                       </Fragment>
                     ) : (
                       <Fragment>
-                        <li className="flex flex-col text-gray-700 w-48 shadow-lg">
+                        <li className="flex flex-col  text-gray-700 w-48 shadow-lg">
                           <span
                             onClick={(e) => history.push("/admin/dashboard")}
-                            className="flex space-x-2 py-2 px-8 hover:bg-gray-400 cursor-pointer"
+                            className="flex  space-x-2 py-2 px-8 hover:bg-gray-400 cursor-pointer"
                           >
                             <span>
                               <svg
