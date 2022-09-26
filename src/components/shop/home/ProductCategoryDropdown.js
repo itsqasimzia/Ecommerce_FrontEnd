@@ -70,7 +70,6 @@ const FilterList = () => {
   }, [range]);
 
   const fetchData = async () => {
-    console.log(range);
     if (range === "all") {
       try {
         let responseData = await getAllProduct();

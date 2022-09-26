@@ -6,7 +6,7 @@ const AdminFooter = (props) => {
     <Fragment>
       <footer
         style={{ background: "#303031", color: "#87898A" }}
-        className="z-10 py-6 px-4 md:px-12 text-center"
+        className="z-10 py-6 px-4 md:px-12 text-center absolute bottom-0 left-0 right-0"
       >
         Develop & Design Qasim Zia © Copyright {moment().format("YYYY")}
       </footer>

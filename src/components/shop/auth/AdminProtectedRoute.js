@@ -6,7 +6,7 @@ const AdminProtectedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-      isAdmin() && isAuthenticate() ? (
+      isAuthenticate() ? (
         <Component {...props} />
       ) : (
         <Redirect

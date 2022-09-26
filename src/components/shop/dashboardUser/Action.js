@@ -19,10 +19,11 @@ export const fetchData = async (dispatch) => {
     : "";
   try {
     let responseData = await getUserById(userId);
+    const preparePayload = { ...responseData.User, userId };
     console.log(responseData);
     setTimeout(() => {
       if (responseData && responseData.User) {
-        dispatch({ type: "userDetails", payload: responseData.User });
+        dispatch({ type: "userDetails", payload: preparePayload });
         dispatch({ type: "loading", payload: false });
       }
     }, 500);
@@ -51,6 +52,7 @@ export const fetchOrderByUser = async (dispatch) => {
 };
 
 export const updatePersonalInformationAction = async (dispatch, fData) => {
+  console.log("updatePersonalInformationAction", fData);
   const formData = {
     uId: fData.id,
     name: fData.name,

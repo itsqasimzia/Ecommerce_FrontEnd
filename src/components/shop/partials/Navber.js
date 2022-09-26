@@ -9,6 +9,7 @@ import { faCar, faLock } from "@fortawesome/free-solid-svg-icons";
 import { HomeContext } from "../home";
 import { LayoutContext } from "..";
 import { homeReducer, homeState } from "../home/HomeContext";
+import { useEffect } from "react";
 const NavbarComponent = (props) => {
   const history = useHistory();
   const location = useLocation();
@@ -40,32 +41,32 @@ const NavbarComponent = (props) => {
       </span>
     );
   };
-  const NavItemsWithIcon = ({ preTitle, postTitle, middle, icon }) => {
-    return (
-      <span
-        className="py-1 rounded-lg font-light flex tracking-widest hover:text-gray-800 cursor-pointer ml-4"
-        onClick={(e) => history.push("/")}
-      >
-        <div>
-          <FontAwesomeIcon icon={icon} className="color-primary-text mr-1" />
-        </div>
-        <div className="ml-1 color-primary-text">
-          <span className="hover:text-orange-500">{preTitle} </span>
-          <span>{middle && middle} </span>
-          <span className="hover:text-orange-500">
-            {postTitle && postTitle}
-          </span>
-        </div>
-      </span>
-    );
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  console.log(scrollPosition);
   return (
     <Fragment>
       {/* Navber Section start */}
 
-      <nav className="w-full z-20 shadow-lg lg:shadow-none bg-white">
-        <div className="m-4 md:mx-8 flex justify-between items-center ">
+      <nav
+        className={`${
+          scrollPosition > 10 && "bottomShadow"
+        } w-full z-20 shadow-lg lg:shadow-none bg-white  position-sticky`}
+      >
+        <div className="m-4 flex justify-between items-center ">
           <div className="hidden col-span-1 mt-2 lg:block lg text-gray-600">
             <div>
               <span className="rounded-full bg-green-500"></span>
@@ -83,18 +84,36 @@ const NavbarComponent = (props) => {
           ></div>
 
           <div className="flex items-right self-end lg:col-span-1 flex justify-end">
-            <NavItemsWithIcon
-              preTitle={"Login"}
-              middle={"or"}
-              postTitle={"Signup"}
-              icon={faLock}
-            />
-            <NavItemsWithIcon
-              preTitle={"Track Order"}
-              middle={""}
-              postTitle={""}
-              icon={faCar}
-            />
+            <span
+              className="py-1 rounded-lg font-light flex tracking-widest hover:text-gray-800 cursor-pointer ml-4"
+              onClick={() => loginModalOpen()}
+            >
+              <div>
+                <FontAwesomeIcon
+                  icon={faLock}
+                  className="color-primary-text mr-1"
+                />
+              </div>
+              <div className="ml-1 color-primary-text">
+                <span className="hover:text-orange-500">Login </span>
+                <span>or </span>
+                <span className="hover:text-orange-500">Signup</span>
+              </div>
+            </span>
+            <span
+              className="py-1 rounded-lg font-light flex tracking-widest hover:text-gray-800 cursor-pointer ml-4"
+              onClick={() => history.push("/user/setting")}
+            >
+              <div>
+                <FontAwesomeIcon
+                  icon={faCar}
+                  className="color-primary-text mr-1"
+                />
+              </div>
+              <div className="ml-1 color-primary-text">
+                <span className="hover:text-orange-500">Track Order </span>
+              </div>
+            </span>
           </div>
         </div>
       </nav>
@@ -102,7 +121,7 @@ const NavbarComponent = (props) => {
 
       {/* Navber Section 2 */}
       <nav className="w-full z-20 shadow-lg lg:shadow-none bg-white">
-        <div className="md:mx-4 grid grid-cols-4 lg:grid-cols-4">
+        <div className="mx-8 grid grid-cols-4 lg:grid-cols-4">
           <div className="hidden col-span-1 mt-2 lg:block lg text-gray-600">
             <NavItems title={`Home`} />
             <NavItems title={`Blog`} />
@@ -185,7 +204,7 @@ const NavbarComponent = (props) => {
                     />
                   </svg>
                   <div className="userDropdown absolute right-0 mt-1 bg-gray-200 rounded">
-                    {!isAdmin() ? (
+                    {isAdmin() === "customer" && (
                       <Fragment>
                         <li className="flex flex-col text-gray-700 w-48 shadow-lg">
                           <span
@@ -306,7 +325,8 @@ const NavbarComponent = (props) => {
                           </span>
                         </li>
                       </Fragment>
-                    ) : (
+                    )}
+                    {isAdmin() === "admin" && (
                       <Fragment>
                         <li className="flex flex-col  text-gray-700 w-48 shadow-lg">
                           <span
@@ -414,7 +434,7 @@ const NavbarComponent = (props) => {
             </div>
           </div>
         </div>
-
+        {/* Hidden Fields */}
         <div
           className={
             data.navberHamburger && data.navberHamburger

@@ -75,13 +75,13 @@ const SingleProduct = (props) => {
           gap: "2.6rem",
           padding: "1rem auto",
           margin: "1rem auto",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
         }}
       >
         {products && products.length > 0 ? (
           products.map((item, index) => {
             return (
-              <div key={index} style={{ height: "500px" }}>
+              <div key={index}>
                 {/* card */}
 
                 <div className="container relative page-wrapper cursor-pointer">
@@ -98,7 +98,13 @@ const SingleProduct = (props) => {
                             alt=""
                           />
                           <div className="img-info">
-                            <div className="info-inner">
+                            <div
+                              className="info-inner"
+                              style={{
+                                padding: "4px",
+                                borderRadius: "3px",
+                              }}
+                            >
                               <span className="p-name">I feel like Pablo</span>
                               <span className="p-company"> {item.pName}</span>
                             </div>

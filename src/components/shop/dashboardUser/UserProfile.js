@@ -18,7 +18,7 @@ const ProfileComponent = () => {
   useEffect(() => {
     setFdata({
       ...fData,
-      id: userDetails.id,
+      id: userDetails.userId,
       name: userDetails.name,
       email: userDetails.email,
       phone: userDetails.phoneNumber,

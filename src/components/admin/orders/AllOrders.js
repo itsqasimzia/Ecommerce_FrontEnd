@@ -112,11 +112,6 @@ const CategoryTable = ({ order, editOrder }) => {
           })}
         </td>
         <td className="hover:bg-gray-200 p-2 text-center cursor-default">
-          {!order?.status && (
-            <span className="block text-red-600 rounded-full text-center text-xs px-2 font-semibold">
-              {order?.status ? order?.status : "pending"}
-            </span>
-          )}
           {order?.status === "Not processed" && (
             <span className="block text-red-600 rounded-full text-center text-xs px-2 font-semibold">
               {order?.status ? order?.status : "pending"}

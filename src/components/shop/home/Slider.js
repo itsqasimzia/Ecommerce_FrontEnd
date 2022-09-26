@@ -6,17 +6,8 @@ import { prevSlide, nextSlide } from "./Mixins";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAnchor,
-  faBackward,
-  faBagShopping,
-  faBathtub,
   faCircleArrowLeft,
   faCircleArrowRight,
-  faClock,
-  faFemale,
-  faFootball,
-  faMale,
-  faSquareCaretRight,
 } from "@fortawesome/free-solid-svg-icons";
 const apiURL = process.env.REACT_APP_API_URL;
 
@@ -29,60 +20,9 @@ const Slider = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const CATEGORIES = [
-    {
-      title: "Bags & Shoes",
-      icon: faBagShopping,
-    },
-    {
-      title: "Mens Fashion",
-      icon: faMale,
-    },
-    {
-      title: "Women Fashion",
-      icon: faFemale,
-    },
-    {
-      title: "Accessories",
-      icon: faAnchor,
-    },
-    {
-      title: "Sports",
-      icon: faFootball,
-    },
-    {
-      title: "Bathroom",
-      icon: faBathtub,
-    },
-    {
-      title: "Interior",
-      icon: faClock,
-    },
-  ];
-
   return (
     <Fragment>
       <div className="flex justify-between mt-4 space-x-4 mx-8">
-        {/* <div className="text-black border" style={{ width: "350px" }}>
-          <div class="area"></div>
-          <nav class="main-menu w-full" style={{ width: "100%" }}>
-            <ul>
-              {CATEGORIES?.length &&
-                CATEGORIES.map((category) => {
-                  return (
-                    <li class="has-subnav">
-                      <a>
-                        <i className="fa">
-                          <FontAwesomeIcon icon={category?.icon} size="1x" />
-                        </i>
-                        <span class="nav-text">{category?.title}</span>
-                      </a>
-                    </li>
-                  );
-                })}
-            </ul>
-          </nav>
-        </div> */}
         {/* <div className="w-20 bg-white"></div> */}
         <div className="relative w-full ">
           {data.sliderImages.length > 0 ? (

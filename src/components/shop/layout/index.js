@@ -7,14 +7,7 @@ export const LayoutContext = createContext();
 const Layout = ({ children }) => {
   return (
     <Fragment>
-      <div
-        style={{
-          width: "85%",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <div>
         <Navber />
 
         <LoginSignup />

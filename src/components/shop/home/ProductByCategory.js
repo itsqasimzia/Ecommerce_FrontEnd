@@ -2,8 +2,48 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import Layout from "../layout";
 import { productByCategory } from "../../admin/products/FetchApi";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAnchor,
+  faBagShopping,
+  faBathtub,
+  faClock,
+  faFemale,
+  faFootball,
+  faMale,
+} from "@fortawesome/free-solid-svg-icons";
 const apiURL = process.env.REACT_APP_API_URL;
+
+const CATEGORIES = [
+  {
+    title: "Bags & Shoes",
+    icon: faBagShopping,
+  },
+  {
+    title: "Mens Fashion",
+    icon: faMale,
+  },
+  {
+    title: "Women Fashion",
+    icon: faFemale,
+  },
+  {
+    title: "Accessories",
+    icon: faAnchor,
+  },
+  {
+    title: "Sports",
+    icon: faFootball,
+  },
+  {
+    title: "Bathroom",
+    icon: faBathtub,
+  },
+  {
+    title: "Interior",
+    icon: faClock,
+  },
+];
 
 const Submenu = ({ category }) => {
   const history = useHistory();
@@ -52,6 +92,26 @@ const AllProduct = ({ products }) => {
     <Fragment>
       <Submenu category={category} />
       <section className="m-4 md:mx-8 md:my-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="text-black border" style={{ width: "350px" }}>
+          <div class="area"></div>
+          <nav class="main-menu w-full" style={{ width: "100%" }}>
+            <ul>
+              {CATEGORIES?.length &&
+                CATEGORIES.map((category) => {
+                  return (
+                    <li class="has-subnav">
+                      <a>
+                        <i className="fa">
+                          <FontAwesomeIcon icon={category?.icon} size="1x" />
+                        </i>
+                        <span class="nav-text">{category?.title}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+            </ul>
+          </nav>
+        </div>
         {products && products?.length > 0 ? (
           products.map((item, index) => {
             return (

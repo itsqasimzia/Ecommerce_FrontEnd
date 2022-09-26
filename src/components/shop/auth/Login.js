@@ -7,7 +7,7 @@ const Login = (props) => {
     useContext(LayoutContext);
 
   const [data, setData] = useState({
-    email: "qasim@gmail.com",
+    email: "qasimzia1212@gmail.com",
     password: "11223344",
     error: false,
     loading: true,
@@ -99,9 +99,6 @@ const Login = (props) => {
               Remember me<span className="text-sm text-gray-600">*</span>
             </label>
           </div>
-          <a className="block text-gray-600" href="/">
-            Lost your password?
-          </a>
         </div>
         <div
           onClick={(e) => formSubmit()}
