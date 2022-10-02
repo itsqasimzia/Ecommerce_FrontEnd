@@ -28,7 +28,7 @@ const CategoryList = () => {
   };
 
   return (
-    <div className={`${data.categoryListDropdown ? "" : "hidden"} my-4`}>
+    <div className={`${!data.categoryListDropdown ? "" : "hidden"} my-4`}>
       <hr />
       <div className="py-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {categories && categories.length > 0 ? (
@@ -37,13 +37,25 @@ const CategoryList = () => {
               <Fragment key={index}>
                 <div
                   onClick={(e) => history.push(`/products/category/${item.id}`)}
-                  className="col-span-1 m-2 flex flex-col items-center justify-center space-y-2 cursor-pointer"
+                  className="col-span-1 m-2 flex flex-col hovicon effect-1 sub-a justify-center items-center cursor-pointer p-4"
                 >
-                  <img
-                    src={`${apiURL}/uploads/categories/${item.cImage}`}
-                    alt="pic"
-                  />
-                  <div className="font-medium">{item.cName}</div>
+                  <div
+                    className="bg-black object-fit img-hover-eff"
+                    style={{
+                      width: "200px",
+                      height: "200px",
+                      overflow: "hidden",
+                      borderRadius: "100%",
+                    }}
+                  >
+                    <img
+                      src={`${apiURL}/uploads/categories/${item.cImage}`}
+                      alt="pic"
+                      className="w-full h-full"
+                    />
+                  </div>
+
+                  <div className="font-medium py-3">{item.cName}</div>
                 </div>
               </Fragment>
             );

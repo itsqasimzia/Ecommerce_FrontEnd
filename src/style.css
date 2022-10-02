@@ -1,3 +1,43 @@
 .color-primary-text {
   color: #718096 !important;
 }
+footer.footer-area .container {
+  margin: auto;
+}
+footer.footer-area .container > .row {
+  display: flex;
+  justify-content: space-between;
+}
+footer.footer-area .container > .row > div:nth-child(2) input[type="email"] {
+  outline: none;
+  border: 0;
+  height: 30px;
+  width: 75%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background: transparent;
+  border-bottom: 1px solid #87898a85;
+  color: #87898a;
+}
+::placeholder {
+  color: #87898a;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #87898a;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #87898a;
+}
+
+button.nw-btn.primary-btn {
+  width: 75%;
+  background: #f1f2f4;
+  height: 30px;
+  font-weight: 500;
+  color: #303031;
+}

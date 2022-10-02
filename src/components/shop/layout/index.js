@@ -6,17 +6,17 @@ export const LayoutContext = createContext();
 
 const Layout = ({ children }) => {
   return (
-    <Fragment>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <div>
-        <Navber />
+        {/* <Navber /> */}
 
         <LoginSignup />
         <CartModal />
         {/* All Children pass from here */}
         {children}
       </div>
-      <Footer />
-    </Fragment>
+      {/* <Footer /> */}
+    </div>
   );
 };
 

@@ -4,38 +4,33 @@ import Slider from "./Slider";
 import ProductCategory from "./ProductCategory";
 import { homeState, homeReducer } from "./HomeContext";
 import SingleProduct from "./SingleProduct";
+import Adds from "./Adds/Adds";
 
 export const HomeContext = createContext();
 
 const HomeComponent = () => {
   return (
-    <Fragment>
+    <div className="w-full h-full flex flex-col ">
       <Slider />
-      <div className="flex justify-between space-x-4 mx-8">
-        {/* <div className="my-8  " style={{ width: "370px" }}></div> */}
-        <div className="w-full my-12">
-          {/* Category, Search & Filter Section */}
-          <section>
-            <ProductCategory />
-          </section>
-          {/* Product Section */}
-          <section>
-            <SingleProduct />
-          </section>
+      <div className="flex flex-col my-12">
+        <ProductCategory />
+        <SingleProduct />
+        <div style={{ height: "600px", border: "4px solid green" }}>
+          <Adds />
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 
 const Home = (props) => {
   const [data, dispatch] = useReducer(homeReducer, homeState);
   return (
-    <Fragment>
+    <div>
       <HomeContext.Provider value={{ data, dispatch }}>
         <Layout children={<HomeComponent />} />
       </HomeContext.Provider>
-    </Fragment>
+    </div>
   );
 };
 

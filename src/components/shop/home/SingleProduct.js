@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { NoProductFoundImg } from "../../../assets";
 import { getAllProduct } from "../../admin/products/FetchApi";
+import Adds from "./Adds/Adds";
 import { HomeContext } from "./index";
 import { isWishReq, unWishReq, isWish } from "./Mixins";
 import "./style.css";
@@ -105,8 +106,14 @@ const SingleProduct = (props) => {
                                 borderRadius: "3px",
                               }}
                             >
-                              <span className="p-name">I feel like Pablo</span>
-                              <span className="p-company"> {item.pName}</span>
+                              {/* <span className="p-name">I feel like Pablo</span> */}
+                              <span
+                                className="p-company font-medium text-white"
+                                style={{ fontSize: "1.5rem", color: "green" }}
+                              >
+                                {" "}
+                                {item.pName}
+                              </span>
                             </div>
                             <div className="a-size">
                               <div className="flex items-center space-x-1">
@@ -183,7 +190,7 @@ const SingleProduct = (props) => {
                             }
                             className="cart"
                           >
-                            <span className="price">${item.pPrice}.00</span>
+                            <span className="price">Rs.{item.pPrice}.00</span>
                             <span className="add-to-cart">
                               <span className="txt">Add in cart</span>
                             </span>

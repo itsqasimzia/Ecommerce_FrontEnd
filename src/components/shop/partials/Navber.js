@@ -10,6 +10,7 @@ import { HomeContext } from "../home";
 import { LayoutContext } from "..";
 import { homeReducer, homeState } from "../home/HomeContext";
 import { useEffect } from "react";
+import { Logo } from "../../../assets";
 const NavbarComponent = (props) => {
   const history = useHistory();
   const location = useLocation();
@@ -64,17 +65,26 @@ const NavbarComponent = (props) => {
       <nav
         className={`${
           scrollPosition > 10 && "bottomShadow"
-        } w-full z-20 shadow-lg lg:shadow-none bg-white  position-sticky`}
+        } w-full z-20 shadow-lg lg:shadow-none bg-white`}
       >
         <div className="m-4 flex justify-between items-center ">
-          <div className="hidden col-span-1 mt-2 lg:block lg text-gray-600">
-            <div>
+          <div
+            onClick={(e) => history.push("/")}
+            className="hidden col-span-1 mt-2 lg:block lg text-gray-600"
+          >
+            {/* <div>
               <span className="rounded-full bg-green-500"></span>
               <span className="rounded-full w-20 text-green-500 font-bold p-0 m-0 text-2xl">
                 Mart
               </span>
               <span className="block p-0 m-0">Pick & Cary</span>
-            </div>
+            </div> */}
+            <img
+              src={Logo}
+              width={280}
+              height={240}
+              style={{ marginLeft: "0.2rem", cursor: "pointer" }}
+            />
           </div>
 
           <div
@@ -83,7 +93,7 @@ const NavbarComponent = (props) => {
             className="hidden lg:block  text-center text-gray-800 font-bold tracking-widest uppercase text-2xl cursor-pointer"
           ></div>
 
-          <div className="flex items-right self-end lg:col-span-1 flex justify-end">
+          <div className="flex items-right  lg:col-span-1 flex justify-end">
             <span
               className="py-1 rounded-lg font-light flex tracking-widest hover:text-gray-800 cursor-pointer ml-4"
               onClick={() => loginModalOpen()}
@@ -102,7 +112,7 @@ const NavbarComponent = (props) => {
             </span>
             <span
               className="py-1 rounded-lg font-light flex tracking-widest hover:text-gray-800 cursor-pointer ml-4"
-              onClick={() => history.push("/user/setting")}
+              onClick={() => history.push("/user/orders")}
             >
               <div>
                 <FontAwesomeIcon
@@ -124,8 +134,8 @@ const NavbarComponent = (props) => {
         <div className="mx-8 grid grid-cols-4 lg:grid-cols-4">
           <div className="hidden col-span-1 mt-2 lg:block lg text-gray-600">
             <NavItems title={`Home`} />
-            <NavItems title={`Blog`} />
-            <NavItems title={`Contact Us`} />
+            {/* <NavItems title={`Blog`} />
+            <NavItems title={`Contact Us`} /> */}
           </div>
           <div className="col-span-2 lg:hidden flex justify-items-stretch	items-center">
             <svg
@@ -449,7 +459,7 @@ const NavbarComponent = (props) => {
             >
               Shop
             </span>
-            <span
+            {/* <span
               className="font-medium text-lg tracking-widest hover:text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer"
               onClick={(e) => history.push("/blog")}
             >
@@ -460,7 +470,7 @@ const NavbarComponent = (props) => {
               onClick={(e) => history.push("/contact-us")}
             >
               Contact us
-            </span>
+            </span> */}
           </div>
         </div>
       </nav>

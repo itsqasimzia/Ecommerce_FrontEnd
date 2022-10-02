@@ -25,7 +25,18 @@
   background: #b7791f;
   cursor: pointer;
 }
-
+.img-hover-eff {
+  box-shadow: -3px 4px 8px -3px rgba(0, 0, 0, 0.71);
+  -webkit-box-shadow: -3px 4px 8px -3px rgba(0, 0, 0, 0.71);
+  -moz-box-shadow: -3px 4px 8px -3px rgba(0, 0, 0, 0.71);
+  transition: all ease-in-out 0.3s;
+}
+.img-hover-eff:hover {
+  transition: all ease-in-out 0.3s;
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.71);
+  -webkit-box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.71);
+  -moz-box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.71);
+}
 .list-group {
 }
 
@@ -204,6 +215,7 @@
 }
 
 .info-inner .p-company {
+  margin-top: 1rem;
   font-family: "Lato", sans-serif;
   font-size: 12px;
   text-transform: uppercase;
